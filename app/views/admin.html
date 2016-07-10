@@ -1,0 +1,40 @@
+<div class="adminPage">
+
+
+
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-1 admin-main">
+          <div class=" admin-header">
+            <p>中国石油大学日历后台管理页</p>
+          </div>
+          <form class="col-md-10 col-md-offset-1 inputForm">
+            标题:
+            <input type="text" ng-model="title" required class="form-control">
+            开始日期:
+            <input type="date" ng-model="startdate" required  class="form-control">
+            开始时间:
+            <input type="time" ng-model="starttime" required  class="form-control">
+            结束时间:
+            <input type="time" ng-model="endtime" required  class="form-control">
+            结束日期:
+            <input type="date" ng-model="enddate" required  class="form-control">
+            公告内容:
+            <textarea rows="5" type="text" style="resize: none" ng-model="detail" required  class="form-control"></textarea><br>
+            <button type="submit" ng-click="click()" class="btn btn-success">提交</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+</div>
+
+
+
