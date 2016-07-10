@@ -6,11 +6,11 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-md-10 col-md-1 admin-main">
+        <div class=" admin-main">
           <div class=" admin-header">
             <p>中国石油大学日历后台管理页</p>
           </div>
-          <form class="col-md-10 col-md-offset-1 inputForm">
+          <form class=" inputForm">
             标题:
             <input type="text" ng-model="title" required class="form-control">
             开始日期:
@@ -29,12 +29,47 @@
       </div>
     </div>
 
+  <div ng-controller="AdminCtrl">
+    <div class="container">
+      <div class="row">
+        <div class="admin-page" ng-repeat="page in pages">
+          <div class="title">{{page.title}}{{"  "}}{{page.id}}
+          <p>{{page.startdate}}{{page.starttime}}{{"~"}}{{page.enddate}}{{page.endtime}}</p>
+          </div>
+          <p class="body">{{page.detail}}</p>
+          <div><button class="btn btn-info" ng-click="edit(page.id)">编辑</button>
+            <button class="btn btn-danger" ng-click="delete(page.id)">删除</button></div>
+        </div>
+      </div>
+    </div>
 
-
-
+  </div>
 
 
 </div>
+<div id="alertAffair" class="alert"></div>
+<div ng-controller="AdminCtrl" id="form" class="alert adminPage" style="left: 0;right: 0;top: 40px;width:630px;height: auto;padding:20px; margin: 0 auto;background: ghostwhite;overflow-y:hidden; border-radius: 5px;m">
+
+        <div class=" admin-header">
+          <p>编辑{{EditId}}</p>
+        </div>
+        <form  inputForm>
+          标题:
+          <input type="text" ng-model="titleEdit" required class="form-control">
+          开始日期:
+          <input type="date" ng-model="startdateEdit" required  class="form-control">
+          开始时间:
+          <input type="time" ng-model="starttimeEdit" required  class="form-control">
+          结束时间:
+          <input type="time" ng-model="endtimeEdit" required  class="form-control">
+          结束日期:
+          <input type="date" ng-model="enddateEdit" required  class="form-control">
+          公告内容:
+          <textarea rows="5" type="text" style="resize: none" ng-model="detailEdit" required  class="form-control"></textarea><br>
+          <button type="submit" ng-click="clickEdit(EditId)" class="btn btn-success">提交</button>
+        </form>
+      </div>
+
 
 
 

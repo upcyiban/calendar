@@ -7,6 +7,12 @@
  * # MainCtrl
  * Controller of the calendarApp
  */
+
+
+
+
+
+
 angular.module('calendarApp')
   .controller('MainCtrl', function () {
     this.awesomeThings = [

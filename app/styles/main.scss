@@ -113,18 +113,115 @@ font-family:"Microsoft YaHei UI Light";
   width:100%;
   background: url("/images/admin/adminbackground.jpg");
   background-size: auto;
+  overflow: scroll;
+  overflow-x:hidden;
   .admin-main{
+    width: 600px;
     margin-top:80px;
     margin-left:auto;
     margin-right:auto;
     padding:40px;
     background: rgba(255,255,255,0.8);
+    background-attachment: fixed;
     border-radius: 5px;
     .inputForm{
+
       font-family:"Microsoft YaHei UI Light";
       font-size:20px;
       color:gray;
     }
   }
+  .admin-page{
+    margin-top:10px;
+    width:600px;
+    margin-left:auto;
+    margin-right:auto;
+    padding:10px 40px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 8px;
+    color: dimgray;
 
+    .title{
+      font-family:"Microsoft YaHei UI";
+      border-bottom: darkgray solid 0.5px  ;
+      p{
+        font-size:5px;
+        color: darkgray;
+      }
+    }
+    .body{
+      font-family:"Microsoft YaHei UI";
+    }
+
+  }
+
+}
+
+div{
+  font-family:"Microsoft YaHei UI Light";
+}
+
+
+
+
+
+
+
+
+
+/*alertErrorCSS*/
+
+
+.alert{
+  -webkit-transition: all 0.35s;
+  -moz-transition: all 0.35s;
+  -ms-transition: all 0.35s;
+  -o-transition: all 0.35s;
+  transition: all 0.35s;
+  -webkit-transform: scale(2,2);
+  -moz-transform: scale(2,2);
+  -ms-transform: scale(2,2);
+  -o-transform: scale(2,2);
+  transform: scale(2,2);
+  opacity: 0;
+  display: none;
+  height:100%;
+  width:100%;
+  position: fixed;
+  top:0;
+  margin:0;
+  padding:0;
+  background: rgba(0,0,0,0.6);
+  .alertMain{
+    position: absolute;
+    top:30%;
+    left:35%;
+    height:30%;
+    width:30%;
+    background: white;
+    border-radius: 5px;
+    .closeButton{
+      background: white;
+      border-top:grey solid 0.5px;
+      border-bottom: 0;
+      border-left: 0;
+      border-right: 0;
+      position: absolute;
+      bottom: 0;
+      height:3em;
+      width:100%;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      font-family: "Microsoft YaHei UI Light";
+      font-size:20px;
+    }
+  }
+}
+.alert-active{
+  -webkit-transform: scale(1, 1);
+  -moz-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  -o-transform: scale(1, 1);
+  transform: scale(1, 1);
+  opacity: 1;
 }
