@@ -9,9 +9,37 @@
  */
 angular.module('calendarApp')
   .controller('AdminCtrl', function ($scope,$http) {
-    $scope.change = function () {
-     console.log($scope.name);
+
+
+
+
+    function update() {
+      $http.get('http://localhost:8087/event/showall').success(function (data) {
+        $scope.pages = data;
+      });
     }
+
+
+
+
+
+function clear() {
+  $scope.starttime = "";
+  $scope.endtime = "";
+  $scope.startdate = "";
+  $scope.enddate = "";
+  $scope.detail = "";
+  $scope.title = "";
+
+}
+
+
+
+
+    /*公告显示*/
+    update();
+
+    /*公告创建*/
     $scope.click = function () {
       var starttime = $scope.starttime;
       var endtime = $scope.endtime;
@@ -19,28 +47,42 @@ angular.module('calendarApp')
       var enddate = $scope.enddate;
       var detail = $scope.detail;
       var title = $scope.title;
-  $http.post('http://localhost:8087/event/create?starttime='
-    +starttime.toLocaleTimeString()
-    +'&endtime='+endtime.toLocaleTimeString()
-    +'&startdate='+startdate.toLocaleDateString()
-    +'&enddate='+enddate.toLocaleDateString()
-    +'&detail='+ detail
-    +'&title='+ title
-  ).success(function () {
-    alert('公告创建成功');
-  });
+      if(startdate&&starttime&&endtime&&detail&&title&&enddate){
+        $http.post('http://localhost:8087/event/create?starttime='
+          +starttime.toLocaleTimeString()
+          +'&endtime='+endtime.toLocaleTimeString()
+          +'&startdate='+startdate.toLocaleDateString()
+          +'&enddate='+enddate.toLocaleDateString()
+          +'&detail='+ detail
+          +'&title='+ title
+        ).success(function (backData) {
+          if(backData.code==1){
+
+            update();
+            clear();
+            alert('创建成功');
+          }else{
+            alert("创建失败...")
+          }
+        });
+      }
 }
-    $http.get('http://localhost:8087/event/showall').success(function (data) {
-      $scope.pages = data;
-    });
+
+/*公告删除*/
     $scope.delete = function (id) {
       $http.post('http://localhost:8087/event/delete?id='+id).success(function (backData) {
-        alert(backData.message);
+        if(backData.code==1){
+          update();
+          alert(backData.message);
+        }else{
+          alert("删除失败...")
+        }
+
       });
     }
-
+/*公告编辑*/
     $scope.edit = function (id) {
-      $scope.EditId = id;
+$('input').value = "";
 
         $('#form').css('display','block');
         $('#alertAffair').css('display','block');
@@ -57,34 +99,50 @@ angular.module('calendarApp')
             $('#alertAffair').css('display','none');
           },350)
         })
-      }
-    $scope.clickEdit = function (id) {
-alert(id);
-      var starttime = $scope.starttimeEdit;
-      var endtime = $scope.endtimeEdit;
-      var startdate = $scope.startdateEdit;
-      var enddate = $scope.enddateEdit;
-      var detail = $scope.detailEdit;
-      var title = $scope.titleEdit;
-      $http.post('http://localhost:8087/event/update?id='
-          +id
-        +'&starttime='+starttime.toLocaleTimeString()
-        +'&endtime='+endtime.toLocaleTimeString()
-        +'&startdate='+startdate.toLocaleDateString()
-        +'&enddate='+enddate.toLocaleDateString()
-        +'&detail='+ detail
-        +'&title='+ title
-      ).success(function (mes) {
-        if(mes.code==1){
-          $('#form').removeClass('alert-active');
-          $('#alertAffair').removeClass('alert-active');
-          setTimeout(function () {
-            $('#form').css('display','none');
-            $('#alertAffair').css('display','none');
-          },350)
+      $scope.clickEdit = function () {
+        //alert(id);
+
+         var starttime = $scope.starttimeEdit;
+         var endtime = $scope.endtimeEdit;
+         var startdate = $scope.startdateEdit;
+         var enddate = $scope.enddateEdit;
+         var detail = $scope.detailEdit;
+         var title = $scope.titleEdit;
+        if(startdate&&starttime&&endtime&&detail&&title&&enddate){
+          $http.post('http://localhost:8087/event/update?id='
+            +id
+            +'&starttime='+starttime.toLocaleTimeString()
+            +'&endtime='+endtime.toLocaleTimeString()
+            +'&startdate='+startdate.toLocaleDateString()
+            +'&enddate='+enddate.toLocaleDateString()
+            +'&detail='+ detail
+            +'&title='+ title
+          ).success(function (backData) {
+            if(backData.code==1){
+              $('#form').removeClass('alert-active');
+              $('#alertAffair').removeClass('alert-active');
+              setTimeout(function () {
+                $('#form').css('display','none');
+                $('#alertAffair').css('display','none');
+              },350);
+              update();
+              clear();
+              alert("更改成功");
+            }else{
+              alert("更改失败...");
+            }
+
+          });
         }
-      });
-    }
+
+      }
+      }
+
+
+
+
+
+
   });
 
 
