@@ -8,10 +8,9 @@
  * Controller of the calendarApp
  */
 angular.module('calendarApp')
-  .controller('AdminCtrl', function ($scope,$http) {
+  .controller('AdminCtrl', function ($scope,$http,$rootScope) {
 
-
-
+    
 
     function update() {
       $http.get('http://localhost:8087/event/showall').success(function (data) {

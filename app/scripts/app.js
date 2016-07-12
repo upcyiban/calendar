@@ -22,7 +22,7 @@ angular
   .config(function ($routeProvider, $httpProvider) {
     $httpProvider.defaults.withCredentials = true;
     $routeProvider
-      .when('/', {
+      .when('/home', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
@@ -37,12 +37,7 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
-      .when('/login',{
-        templateUrl:'views/login.html',
-        controller:'LoginCtrl',
-        controllerAs:'login'
-      })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/home'
       });
   });
