@@ -1,0 +1,70 @@
+
+<div class="adminPage" ng-controller="AddscheduleCtrl">
+
+
+
+
+
+  <div class="container">
+    <div class="row">
+      <div class=" admin-main">
+        <div class=" admin-header">
+          <p>中国石油大学日校历后台管理页</p>
+        </div>
+        <a ng-href="/#/admin" class="btn btn-success">新增公告</a>
+        <h3  style="color: red;">新建学期</h3>
+        <form class=" inputForm">
+          学期标识:
+          <input type="text" ng-model="schoolschedule" required class="form-control">
+          开始日期:
+          <input type="date" ng-model="begindate" required  class="form-control">
+          结束日期:
+          <input type="date" ng-model="enddate" required  class="form-control"><br>
+          <button type="submit" ng-click="click()" class="btn btn-primary">新建学期</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="container">
+      <div class="row">
+        <div class="admin-page" ng-repeat="page in pages">
+          <div class="schoolschedule" style="font-size: 20px;">{{page.schoolschedule}}
+            <hr width="100%" >
+            <p>{{page.begindate}}{{"~"}}{{page.enddate}}</p>
+          </div>
+          <div><button class="btn btn-info" ng-click="edit(page.id)">编辑</button>
+            <button class="btn btn-danger" ng-click="delete(page.id)">删除</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div id="alertAffair" class="alert"></div>
+    <div id="form" class="alert adminPage" style="z-index:3;left: 0;right: 0;top: 40px;height: auto;padding:20px; margin: 0 auto;background: ghostwhite;overflow-y:hidden; border-radius: 5px;">
+
+      <div class=" admin-header">
+        <p>修改公告</p>
+      </div>
+      <form  inputForm>
+        标题:
+        <input type="text" ng-model="schoolscheduleEdit"  required class="form-control">
+        开始日期:
+        <input type="date" ng-model="begindateEdit" required  class="form-control">
+        结束日期:
+        <input type="date" ng-model="enddateEdit" required  class="form-control">
+        <br>
+        <button type="submit" ng-click="clickEdit()" class="btn btn-success">提交</button>
+      </form>
+    </div>
+
+
+  </div>
+
+</div>
+
+
+
+
+

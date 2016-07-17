@@ -14,7 +14,7 @@
 
 
 angular.module('calendarApp')
-  .controller('MainCtrl', function ($location,$http,$rootScope) {
+  .controller('MainCtrl', function ($location,$http) {
     var APPID = "d909b5b12fd5edec";
     var CALLBACK = "http://f.yiban.cn/iapp54315";
     if ($location.search()['verify_request']) {

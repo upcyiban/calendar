@@ -10,7 +10,7 @@
 angular.module('calendarApp')
   .controller('AdminCtrl', function ($scope,$http,$rootScope) {
 
-    
+
 
     function update() {
       $http.get('http://localhost:8087/event/showall').success(function (data) {
@@ -99,7 +99,6 @@ $('input').value = "";
           },350)
         })
       $scope.clickEdit = function () {
-        //alert(id);
 
          var starttime = $scope.starttimeEdit;
          var endtime = $scope.endtimeEdit;
